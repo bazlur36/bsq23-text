@@ -59,47 +59,19 @@ class Category
 
         if ($result = $mysqli->query($query)) {
 
-
-            /* fetch associative array */
             while ($row = $result->fetch_assoc()) {
                 $categories_array[] = $row;
 
             }
 
-            /* free result set */
             $result->free();
         }
 
-        /* close connection */
         $mysqli->close();
 
-        #return $categories_array;
-
-
-        /*$categories = array(
-            array('id' => 1,  'parent' => 0, 'name' => 'Category A'),
-            array('id' => 2,  'parent' => 0, 'name' => 'Category B'),
-            array('id' => 3,  'parent' => 0, 'name' => 'Category C'),
-            array('id' => 4,  'parent' => 0, 'name' => 'Category D'),
-            array('id' => 5,  'parent' => 0, 'name' => 'Category E'),
-            array('id' => 6,  'parent' => 2, 'name' => 'Subcategory F'),
-            array('id' => 7,  'parent' => 2, 'name' => 'Subcategory G'),
-            array('id' => 8,  'parent' => 3, 'name' => 'Subcategory H'),
-            array('id' => 9,  'parent' => 4, 'name' => 'Subcategory I'),
-            array('id' => 10, 'parent' => 9, 'name' => 'Subcategory J'),
-        );*/
-
-        /*echo "<pre>";
-        print_r($categories);
-        echo "</pre>";
-        die();*/
 
         $categories = $categories_array;
 
-        /*echo "<pre>";
-        print_r($categories);
-        echo "</pre>";
-        die();*/
         $map = array(
             0 => array('subcategories' => array())
         );
@@ -115,15 +87,6 @@ class Category
             $map[$category['parent']]['subcategories'][] = &$category;
         }
 
-     /*   echo "<pre>";
-       print_r($categories);
-       echo "</pre>";
-       die();
-
-        echo '<pre>';
-        print_r($map[0]['subcategories']);
-        echo '</pre>';
-        die();*/
         return $categories;
 
     }
